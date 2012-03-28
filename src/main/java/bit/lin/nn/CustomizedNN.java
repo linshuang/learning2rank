@@ -16,6 +16,15 @@ public class CustomizedNN implements NeuralNetListener {
 	protected double _learningRate = 0.8;
 	protected double _momentum = 0.3;
 	int i = 1;
+	protected double breakErrorChange = 0.0;
+	public double getBreakErrorChange() {
+		return breakErrorChange;
+	}
+
+	public void setBreakErrorChange(double breakErrorChange) {
+		this.breakErrorChange = breakErrorChange;
+	}
+
 	private JUtils _jUtils = new JUtils();
 
 	public void setNeuralnet(NeuralNet _sortnet) {
@@ -82,7 +91,7 @@ public class CustomizedNN implements NeuralNetListener {
 		if (m.getCurrentCicle() == 1)
 			_prev = m.getGlobalError();
 		else {
-			if (Math.abs(_prev - m.getGlobalError()) < 0.00002)
+			if (Math.abs(_prev - m.getGlobalError()) < breakErrorChange)
 				_nn.stop();
 			_prev = m.getGlobalError();
 		}
