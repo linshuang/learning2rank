@@ -10,6 +10,7 @@ import org.joone.engine.extenders.BatchModeExtender;
 import org.joone.engine.extenders.DeltaRuleExtender;
 import org.joone.engine.extenders.GradientExtender;
 import org.joone.engine.extenders.MomentumExtender;
+import org.joone.engine.extenders.OnlineModeExtender;
 import org.joone.engine.extenders.RpropExtender;
 import org.joone.engine.extenders.SimulatedAnnealingExtender;
 import org.joone.engine.extenders.UpdateWeightExtender;
@@ -101,11 +102,12 @@ public class SortNetLearner extends ExtendableLearner {
 	}
 
 	public SortNetLearner() {
-		setUpdateWeightExtender(new BatchModeExtender());
+		setUpdateWeightExtender(new OnlineModeExtender());
+//		setUpdateWeightExtender(new BatchModeExtender());
 		// please be careful of the order of extenders...
 		addDeltaRuleExtender(new MomentumExtender());
 		// addDeltaRuleExtender(new RpropExtender());
-		addDeltaRuleExtender(new SimulatedAnnealingExtender());
+//		addDeltaRuleExtender(new SimulatedAnnealingExtender());
 	}
 
 	public static void main(String[] args) {

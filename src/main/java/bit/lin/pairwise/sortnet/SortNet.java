@@ -8,6 +8,7 @@ import org.joone.engine.Monitor;
 import org.joone.engine.SigmoidLayer;
 import org.joone.engine.learning.TeachingSynapse;
 import org.joone.net.NeuralNet;
+import org.joone.util.DynamicAnnealing;
 
 import bit.lin.nn.CustomizedNN;
 import bit.lin.utils.JUtils;
@@ -82,9 +83,9 @@ public class SortNet extends CustomizedNN {
 		m.setLearning(true);
 		m.addNeuralNetListener(this);
 		m.setBatchSize(1);
-		m.addLearner(0, "bit.lin.sortnet.SortNetLearner");
+		m.addLearner(0, "bit.lin.pairwise.sortnet.SortNetLearner");
 		m.setLearningMode(0);
-
+		m.addNeuralNetListener(new DynamicAnnealing());
 	}
 
 	public static SortNet restoreNeuralNet(String fName) {
