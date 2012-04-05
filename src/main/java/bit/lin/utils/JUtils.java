@@ -24,9 +24,9 @@ public class JUtils {
 		int count = 1;
 		try {
 			while (nn.isRunning()) {
-				Thread.sleep(count * 1000);
-				if (count == 10)
-					return;
+				Thread.sleep(count * 10000);
+				if (count != 20)
+					count++;
 			}
 			FileOutputStream fos = new FileOutputStream(fName);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -66,7 +66,8 @@ public class JUtils {
 		}
 	}
 
-	public Vector validate(NeuralNet InputNN, double[][] inputArray, String columnSelector) {
+	public Vector validate(NeuralNet InputNN, double[][] inputArray,
+			String columnSelector) {
 		NeuralNet nn = InputNN.cloneNet();
 
 		Layer input = nn.getInputLayer();
@@ -75,7 +76,7 @@ public class JUtils {
 		menIS.setFirstRow(1);
 		menIS.setAdvancedColumnSelector(columnSelector);
 		menIS.setInputArray(inputArray);
-	
+
 		input.addInputSynapse(menIS);
 
 		Layer output = nn.getOutputLayer();
@@ -90,5 +91,16 @@ public class JUtils {
 
 		nn.stop();
 		return menOS.getAllPatterns();
+	}
+
+	public double[][] Str2Doubles(String[] docs) {
+		double[][] result = new double[1][276];
+		for (int i = 0; i < docs.length; i++) {
+			String[] d = docs[i].split(";");
+			for (int j = 0; j < 138; j++) {
+				result[0][i * 138 + j] = new Double(d[j]);
+			}
+		}
+		return result;
 	}
 }

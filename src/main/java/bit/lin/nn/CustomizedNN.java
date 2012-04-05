@@ -1,5 +1,6 @@
 package bit.lin.nn;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.joone.engine.Monitor;
@@ -9,7 +10,7 @@ import org.joone.net.NeuralNet;
 
 import bit.lin.utils.JUtils;
 
-public class CustomizedNN implements NeuralNetListener {
+public class CustomizedNN implements NeuralNetListener, Serializable {
 	protected NeuralNet _nn;
 	protected int _patterns = 723412 * 20;
 	protected int _cicles = 1;
@@ -25,7 +26,7 @@ public class CustomizedNN implements NeuralNetListener {
 		this.breakErrorChange = breakErrorChange;
 	}
 
-	private JUtils _jUtils = new JUtils();
+	protected JUtils _jUtils = new JUtils();
 
 	public void setNeuralnet(NeuralNet _sortnet) {
 		this._nn = _sortnet;
