@@ -70,7 +70,7 @@ public class Booter {
 	}
 
 	public static void main(String[] args) {
-		Booter.train(50);
-//		Booter.vali();
+//		Booter.train(50);
+		Booter.vali();
 	}
 }

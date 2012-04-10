@@ -93,8 +93,8 @@ public class JUtils {
 		return menOS.getAllPatterns();
 	}
 
-	public double[][] Str2Doubles(String[] docs) {
-		double[][] result = new double[1][276];
+	public double[][] Str2Doubles(String... docs) {
+		double[][] result = new double[1][docs.length*138];
 		for (int i = 0; i < docs.length; i++) {
 			String[] d = docs[i].split(";");
 			for (int j = 0; j < 138; j++) {
